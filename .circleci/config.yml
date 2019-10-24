@@ -18,5 +18,5 @@ jobs:
       PACKAGE_NAME: << pipeline.parameters.package-name >>
     steps:
       - run: echo "Params passed:"
-      - run: echo "STAGE: ${STAGE}"
-      - run: echo "PACKAGE NAME: ${PACKAGE_NAME}"
+      - run: echo ${STAGE}
+      - run: echo ${PACKAGE_NAME}
