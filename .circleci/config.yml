@@ -8,7 +8,7 @@ parameters:
     default: "service-example"
   stage:
     type: string
-    default: "stage"
+    default: "qa"
 jobs:
   build:
     docker:
@@ -16,7 +16,8 @@ jobs:
     environment:
       STAGE: << pipeline.parameters.stage >>
       PACKAGE_NAME: << pipeline.parameters.package-name >>
+      IMAGE_TAG: << pipeline.parameters.image-tag >>
     steps:
-      - run: echo "Params passed:"
-      - run: echo ${STAGE}
+      - run: echo ${IMAGE_TAG}
       - run: echo ${PACKAGE_NAME}
+      - run: echo ${STAGE}
