@@ -3,12 +3,20 @@ parameters:
   image-tag:
     type: string
     default: "latest"
-
+  package-name:
+    type: string
+    default: "service-example"
+  stage:
+    type: string
+    default: "stage"
 jobs:
   build:
     docker:
       - image: circleci/node:<< pipeline.parameters.image-tag >>
     environment:
-      IMAGE_TAG: << pipeline.parameters.image-tag >>
+      STAGE: << pipeline.parameters.stage >>
+      PACKAGE_NAME: << pipeline.parameters.package-name >>
     steps:
-      - run: echo "Image tag used was ${IMAGE_TAG}"
+      - run: echo "Params passed:"
+      - run: echo "STAGE: ${STAGE}"
+      - run: echo "PACKAGE NAME: ${PACKAGE_NAME}"
