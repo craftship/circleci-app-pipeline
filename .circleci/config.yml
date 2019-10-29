@@ -28,4 +28,7 @@ jobs:
       TAG: << pipeline.parameters.tag >>
       BRANCH: << pipeline.parameters.branch >>
     steps:
-      - run: echo ${PACKAGE_NAME} | ${SHA} | ${TAG} | ${BRANCH}
+      - run: echo ${PACKAGE_NAME}
+      - run: echo ${SHA}
+      - run: echo ${TAG}
+      - run: echo ${BRANCH}
