@@ -9,15 +9,23 @@ parameters:
   stage:
     type: string
     default: "qa"
+  sha:
+    type: string
+    default: ""
+  branch:
+    type: string
+    default: ""
+  tag:
+    type: string
+    default: ""
 jobs:
   build:
     docker:
-      - image: circleci/node:<< pipeline.parameters.image-tag >>
+      - image: circleci/node:latest
     environment:
-      STAGE: << pipeline.parameters.stage >>
       PACKAGE_NAME: << pipeline.parameters.package-name >>
-      IMAGE_TAG: << pipeline.parameters.image-tag >>
+      SHA: << pipeline.parameters.sha >>
+      TAG: << pipeline.parameters.tag >>
+      BRANCH: << pipeline.parameters.branch >>
     steps:
-      - run: echo ${IMAGE_TAG}
-      - run: echo ${PACKAGE_NAME}
-      - run: echo ${STAGE}
+      - run: echo ${PACKAGE_NAME} | ${SHA} | ${TAG} | ${BRANCH}
